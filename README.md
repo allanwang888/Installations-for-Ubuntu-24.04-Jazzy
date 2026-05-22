@@ -1,88 +1,295 @@
-# How to Install Ubuntu 24.04 (WSL2) & ROS 2 Jazzy on Windows
+# How to Install Ubuntu on Windows Using WSL2
 
-A complete, step-by-step tutorial on how to set up Ubuntu 24.04 and ROS 2 Jazzy for high-performance robotics development directly inside Windows.
+## Intro
 
-> **MAC USERS:** This tutorial uses WSL2, which is exclusive to Windows. These commands will not work on macOS. You will need to use a Virtual Machine (such as UTM or Parallels) to install Ubuntu 24.04.
+In this tutorial, I’ll show you how to install Ubuntu on Windows using WSL2. This lets you run Ubuntu Linux directly inside Windows without deleting Windows or dual booting.
+
+We’ll set everything up step by step so you can prepare for future ROS 2 tutorials.
 
 ---
 
-# Part 1: Setting up Ubuntu 24.04 via WSL2
+# Step 1 — Check Windows Version
 
-## 1. Check Your Windows Version
+Press:
 
-Press `Windows + R`, type:
+```text
+Windows + R
+```
+
+Type:
 
 ```text
 winver
 ```
 
-Then hit **Enter**.
+Press ENTER.
 
-Make sure you are using:
+You should ideally have:
 
-- Windows 10 version 2004 or newer
-- OR Windows 11
+- Windows 10 version 2004+
+- or Windows 11
 
 ---
 
-## 2. Open PowerShell as Administrator
+# Step 2 — Open PowerShell as Administrator
 
-1. Press the Windows Key
-2. Search for **PowerShell**
+1. Press the Windows key
+2. Search for:
+
+```text
+PowerShell
+```
+
 3. Right-click it
-4. Select **Run as Administrator**
+4. Select:
+
+```text
+Run as Administrator
+```
 
 ---
 
-## 3. Install WSL2 and Ubuntu 24.04
+# Step 3 — Install WSL2 and Ubuntu 24.04
 
-Run the following command:
+Run this command:
 
 ```bash
 wsl --install -d Ubuntu-24.04
 ```
 
-Restart your computer once the installation finishes.
+This is the most important step.
+
+We are specifically asking for Ubuntu 24.04 because future robotics software (like ROS 2 Jazzy) requires this exact version to work.
+
+This command installs:
+
+- WSL2
+- Ubuntu
+- The required virtualization components
 
 ---
 
-## 4. Initialize Ubuntu
+# Step 4 — Restart Computer
 
-After rebooting:
+After the installation finishes:
 
-1. Search for **Ubuntu** in the Windows Start Menu
-2. Open it
-3. Create your UNIX username and password when prompted
+Restart your PC.
 
-> Your password will not appear while typing. This is normal Linux behavior.
+This is required.
 
 ---
 
-## 5. Verify Your Ubuntu Version
+# Step 5 — Open Ubuntu
 
-Ensure you are running Ubuntu 24.04 (Noble Numbat):
+After reboot:
+
+1. Press the Windows key
+2. Search:
+
+```text
+Ubuntu
+```
+
+3. Open it
+
+Ubuntu will finish installing automatically.
+
+---
+
+# Step 6 — Create Linux Username & Password
+
+Ubuntu will ask:
+
+```text
+Enter new UNIX username:
+```
+
+Example:
+
+```text
+{your_name}
+```
+
+Then:
+
+```text
+Enter new UNIX password:
+```
+
+The password will NOT appear while typing.
+
+This is a normal Linux security feature.
+
+Just type it and press ENTER.
+
+---
+
+# Step 7 — Verify Ubuntu Version
+
+Inside the Ubuntu terminal, run:
 
 ```bash
 lsb_release -a
 ```
 
+Look at the `Description` line.
+
+It should say:
+
+```text
+Ubuntu 24.04 LTS
+```
+
+This confirms we are ready for ROS 2.
+
 ---
 
-## 6. Update Ubuntu
+# Step 8 — Update Ubuntu
 
-Keep your Linux subsystem updated:
+Run this command:
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
+Explanation:
+
+- `sudo` = Administrator privileges
+- `apt update` = Refreshes package lists
+- `apt upgrade` = Installs the latest updates
+
 ---
 
-# Part 2: Installing ROS 2 Jazzy
+# Step 9 — Verify Ubuntu Works
 
-## 1. Set the Locale
+Run:
 
-ROS 2 requires specific locale settings.
+```bash
+ls
+```
+
+Then run:
+
+```bash
+pwd
+```
+
+Explanation:
+
+- `ls` lists your files
+- `pwd` shows your current directory
+
+Welcome to Linux basics.
+
+---
+
+# Step 10 — Install VS Code
+
+Download and install Visual Studio Code on Windows normally.
+
+---
+
+# Step 11 — Install WSL Extension in VS Code
+
+Inside VS Code:
+
+1. Open the Extensions tab
+2. Search:
+
+```text
+WSL
+```
+
+3. Install the extension named:
+
+```text
+WSL
+```
+
+Made by Microsoft.
+
+---
+
+# Step 12 — Open Ubuntu Inside VS Code
+
+Back inside your Ubuntu terminal, run:
+
+```bash
+code .
+```
+
+This opens VS Code connected directly to your Ubuntu environment.
+
+> Note: If the `code` command fails, open VS Code manually once, close it, and retry.
+
+---
+
+# Step 13 — Verify Everything Works
+
+Inside the VS Code terminal, run:
+
+```bash
+uname -a
+```
+
+You should see Linux kernel information.
+
+This confirms Ubuntu is running correctly inside VS Code.
+
+---
+
+# Outro
+
+Congratulations — you now have Ubuntu running on Windows using WSL2.
+
+In the next tutorial, we’ll install ROS 2 Jazzy and start building robotics applications directly inside Ubuntu.
+
+---
+
+# How to Install ROS 2 Jazzy on Ubuntu (WSL2)
+
+## Intro
+
+In this tutorial, I’ll show you how to install ROS 2 Jazzy inside Ubuntu running on WSL2.
+
+This is the exact setup you need before building robotics or AI projects with ROS 2.
+
+---
+
+# Step 1 — Open Ubuntu (WSL2)
+
+1. Press the Windows key
+2. Search:
+
+```text
+Ubuntu
+```
+
+3. Open it
+
+Or simply type:
+
+```text
+wsl
+```
+
+inside Windows Terminal.
+
+---
+
+# Step 2 — Update System Packages
+
+Inside the Ubuntu terminal, run:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Updating packages first helps prevent installation issues later.
+
+---
+
+# Step 3 — Set Locale (Important for ROS 2)
 
 Run these commands one by one:
 
@@ -94,9 +301,13 @@ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 ```
 
+ROS 2 requires specific language and character encoding settings to function properly.
+
 ---
 
-## 2. Enable the Universe Repository
+# Step 4 — Enable Universe Repository
+
+Run:
 
 ```bash
 sudo apt install software-properties-common -y
@@ -105,7 +316,9 @@ sudo add-apt-repository universe
 
 ---
 
-## 3. Add the ROS 2 GPG Key
+# Step 5 — Add ROS 2 GPG Key
+
+Run:
 
 ```bash
 sudo apt update && sudo apt install curl -y
@@ -114,9 +327,9 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o
 
 ---
 
-## 4. Add the ROS 2 Repository
+# Step 6 — Add ROS 2 Repository
 
-Copy and paste this entire command as one single line:
+Run this command as one single line:
 
 ```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu noble main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
@@ -124,62 +337,80 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 
 ---
 
-## 5. Install ROS 2 Jazzy Desktop
+# Step 7 — Install ROS 2 Jazzy Desktop
 
-This installs the ROS 2 core libraries and GUI tools like RViz.
+Run:
 
 ```bash
 sudo apt update
 sudo apt install ros-jazzy-desktop -y
 ```
 
-> This installation may take several minutes.
+This installs:
+
+- Core ROS 2 libraries
+- Visual tools like RViz
+
+This step may take several minutes.
 
 ---
 
-## 6. Source the ROS 2 Environment
+# Step 8 — Source ROS 2 Environment
 
-Automatically activate ROS 2 whenever a new terminal opens:
+Run:
 
 ```bash
 echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
+This automatically activates ROS 2 every time you open a terminal.
+
 ---
 
-## 7. Install Developer Tools & Initialize rosdep
+# Step 9 — Install ROS 2 Developer Tools
+
+Run:
 
 ```bash
 sudo apt install python3-colcon-common-extensions python3-rosdep -y
+```
+
+---
+
+# Step 10 — Initialize rosdep
+
+Run:
+
+```bash
 sudo rosdep init
 rosdep update
 ```
 
 ---
 
-## 8. Test Your Installation
+# Step 11 — Test ROS 2 Installation
 
-Check whether ROS 2 is functioning correctly:
+Run:
 
 ```bash
 ros2 topic list
 ```
 
-You should see:
+Expected output:
 
 ```text
 /parameter_events
 /rosout
 ```
 
-If you see these topics, ROS 2 is installed successfully
+If you see these lines, ROS 2 is working correctly.
 
 ---
 
-# (Part 3: Creating Your First Workspace)
+# Step 12 — Create Your First Workspace
 
-Now let's create a ROS 2 workspace for your future robotics projects.
+Run:
 
 ```bash
 mkdir -p ~/ros2_ws/src
@@ -189,30 +420,12 @@ colcon build
 
 ---
 
-# (Open Your Workspace in VS Code)
+# Step 13 — Open VS Code (WSL)
 
-If you have:
-
-- Visual Studio Code installed on Windows
-- The official **WSL Extension** installed
-
-You can open your ROS 2 workspace directly from Ubuntu:
+Run:
 
 ```bash
 code .
 ```
 
----
-
-# (Congratulations!)
-
-You now have:
-
-- Ubuntu 24.04 running inside Windows using WSL2
-- ROS 2 Jazzy fully installed
-- A working ROS 2 workspace ready for robotics development
-
-
-
-# FlowCore (YouTube): https://www.youtube.com/@fcai_comp
-Happy building!
+This opens your ROS 2 workspace directly inside VS Code, ready for development.
