@@ -78,7 +78,7 @@ sudo apt update && sudo apt upgrade -y
 
 ---
 
-# 🛠️ Part 2: Installing ROS 2 Jazzy
+# Part 2: Installing ROS 2 Jazzy
 
 ## 1. Set the Locale
 
