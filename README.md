@@ -415,3 +415,7 @@ code .
 ```
 
 This opens your ROS 2 workspace directly inside VS Code, ready for development.
+
+# FlowCore (YouTube): https://www.youtube.com/@fcai_comp
+Happy coding! :)
+
