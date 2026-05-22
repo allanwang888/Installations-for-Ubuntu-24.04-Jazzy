@@ -212,4 +212,7 @@ You now have:
 - ROS 2 Jazzy fully installed
 - A working ROS 2 workspace ready for robotics development
 
+
+
+# FlowCore (YouTube): https://www.youtube.com/@fcai_comp
 Happy building!
