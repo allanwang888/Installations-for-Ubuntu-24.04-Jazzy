@@ -238,23 +238,9 @@ This confirms Ubuntu is running correctly inside VS Code.
 
 ---
 
-# Outro
 
-Congratulations — you now have Ubuntu running on Windows using WSL2.
-
-In the next tutorial, we’ll install ROS 2 Jazzy and start building robotics applications directly inside Ubuntu.
-
----
 
 # How to Install ROS 2 Jazzy on Ubuntu (WSL2)
-
-## Intro
-
-In this tutorial, I’ll show you how to install ROS 2 Jazzy inside Ubuntu running on WSL2.
-
-This is the exact setup you need before building robotics or AI projects with ROS 2.
-
----
 
 # Step 1 — Open Ubuntu (WSL2)
 
